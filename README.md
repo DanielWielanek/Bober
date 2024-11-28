@@ -9,10 +9,27 @@ As you know it's annoying to configure the histograms. Here is a GUI editor that
 4. call 'cmake ..'
 5. compile code 'make -jN' where N is number of cores
 6. to use Bober apped build directory to library path (e.g., 'export LD_LIBRARY_PATH=~/bober/build:$LD_LIBRARY_PATH')
-# how to use
-You can use it in any macro in principle you should call '  new Bober::HistogramEditor(h, gPad);' to start editor. 'h' is your histogram (TH1 and TH2 are supported) and gPad is pointer to pad for this histogram.
-When you finish your setting up the histogram you can go to tab 'Super' and set the path to the xml-file with configuration. You can configure only one pad+histogram per single xml file.
-To apply settings you have to import them e.g.:
+## Usage Guide
+
+### Starting the Editor
+To launch the histogram editor, create a new instance of `Bober::HistogramEditor`:
+
+```cpp
+// h: pointer to your histogram (TH1 or TH2)
+// gPad: pointer to the current pad
+auto editor = new Bober::HistogramEditor(h, gPad);
+```
+
+### Saving Configuration
+1. Configure your histogram using the editor
+2. Go to the 'Super' tab
+3. Set the path to save your XML configuration
+
+Note: Each XML file can store settings for one pad-histogram combination.
+
+### Applying Saved Configuration
+To apply previously saved settings:
+
 ```
   Bober::HistoStyle style;
   Bober::XMLFile file("t.xml");
