@@ -11,10 +11,11 @@
 #include <TGMenu.h>
 #include <TVirtualPad.h>
 
-
 namespace Bober {
 
-  MainEditor::MainEditor(TGCompositeFrame* frame, TVirtualPad* pad) : fFrame(frame), fPad(pad) {}
+  MainEditor::MainEditor(TGCompositeFrame* frame, TVirtualPad* pad) : fFrame(frame), fPad(pad) {
+    if (!frame || !pad) { throw std::invalid_argument("MainEditor: frame and pad pointers must not be null"); }
+  }
 
   void MainEditor::Update() {
     if (fAvoidSignal) return;

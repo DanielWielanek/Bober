@@ -92,7 +92,6 @@ namespace Bober {
     fAlphaField->Connect("ReturnPressed()", "Bober::MarkerEditor", this, "DoAlphaField()");
     fAlpha->Connect("Pressed()", "Bober::MarkerEditor", this, "GetCurAlpha()");
 #endif
-    fInit = kFALSE;
   }
 
   ////////////////////////////////////////////////////////////////////////////////

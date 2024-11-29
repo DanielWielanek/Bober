@@ -26,11 +26,8 @@
 #include <TROOT.h>
 
 namespace Bober {
-  LineEditor::LineEditor(TGCompositeFrame* frame, TVirtualPad* pad) : MainEditor(frame, pad) {
+  LineEditor::LineEditor(TGCompositeFrame* frame, TVirtualPad* pad) : MainEditor(frame, pad), fAttLine(nullptr), fPriority(1) {
     enum ELineWid { kCOLOR, kLINE_WIDTH, kLINE_STYLE, kALPHA, kALPHAFIELD };
-
-    fPriority = 1;
-    fAttLine  = 0;
 
     TGCompositeFrame* f2 = new TGCompositeFrame(fFrame, 80, 20, kHorizontalFrame);
     fFrame->AddFrame(f2, new TGLayoutHints(kLHintsTop, 1, 1, 0, 0));
