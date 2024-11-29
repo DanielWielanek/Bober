@@ -6,8 +6,8 @@
  *		E-mail: daniel.wielanek@gmail.com
  *		Warsaw University of Technology, Faculty of Physics
  */
-#ifndef Bober_FEATURES_HIST_STYLE2_H_
-#define Bober_FEATURES_HIST_STYLE2_H_
+#ifndef BOBER_STYLE_H_
+#define BOBER_STYLE_H_
 
 #include <array>
 #include <map>
@@ -35,6 +35,7 @@ namespace Bober {
     union value {
       Float_t sFval;
       Int_t sIval;
+      value() : sIval(0) {};
     };
     std::array<Bober::Style::value, 64> fValues;
     ULong64_t fFlags = {0};
@@ -73,4 +74,4 @@ namespace Bober {
 }  // namespace Bober
 
 
-#endif /* Bober_FEATURES_HIST_STYLE_H_ */
+#endif /* BOBER_STYLE_H_ */

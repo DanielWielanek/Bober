@@ -6,8 +6,8 @@
  *		E-mail: daniel.wielanek@gmail.com
  *		Warsaw University of Technology, Faculty of Physics
  */
-#ifndef BoberXLMNODE_H_
-#define BoberXLMNODE_H_
+#ifndef BOBER_XLMNODE_H_
+#define BOBER_XLMNODE_H_
 
 #include <Rtypes.h>
 #include <TList.h>
@@ -189,4 +189,4 @@ namespace Bober {
     ClassDef(XMLFile, 1);
   };
 }  // namespace Bober
-#endif /* BoberXLMNODE_H_ */
+#endif /* BOBER_XLMNODE_H_ */

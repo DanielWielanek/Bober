@@ -21,11 +21,13 @@
 
 namespace Bober {
   void Style::SetF(Int_t bit, Float_t val) {
+    if (bit < 0 || bit >= 64) { throw std::out_of_range("Style::SetF - bit index out of range"); }
     fValues[bit].sFval = val;
     SETBIT(fFlags, bit);
   }
 
   void Style::SetI(Int_t bit, Int_t val) {
+    if (bit < 0 || bit >= 64) { throw std::out_of_range("Style::SetF - bit index out of range"); }
     fValues[bit].sIval = val;
     SETBIT(fFlags, bit);
   }
