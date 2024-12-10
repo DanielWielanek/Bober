@@ -127,7 +127,8 @@ namespace Bober {
     if (Find(kTitleColor)) obj.SetTitleColor(GetI(kTitleColor));
     if (Find(kTitleFont)) obj.SetTitleFont(GetI(kTitleFont));
     if (Find(kCenterTitle)) obj.CenterTitle(GetI(kCenterTitle));
-    if (Find(kTitle)) obj.SetTitle(fTitle);
+    if (!fSkipTitle)
+      if (Find(kTitle)) obj.SetTitle(fTitle);
     if (Find(kRangeMin) && Find(kRangeMin)) obj.SetRangeUser(GetF(kRangeMin), GetF(kRangeMax));
     if (Find(kTicksOpt)) obj.SetTicks(GetTicks());
     if (Find(kMoreLog)) obj.SetMoreLogLabels(GetI(kMoreLog));
@@ -154,7 +155,8 @@ namespace Bober {
     if (Find(kTitleColor)) node->AddAttrib(new Bober::XMLAttrib("TitleColor", Form("%i", GetI(kTitleColor))));
     if (Find(kTitleFont)) node->AddAttrib(new Bober::XMLAttrib("TitleFont", Form("%i", GetI(kTitleFont))));
     if (Find(kCenterTitle)) node->AddAttrib(new Bober::XMLAttrib("CenterTitle", Form("%i", GetI(kCenterTitle))));
-    if (Find(kTitle)) node->AddAttrib(new Bober::XMLAttrib("Title", fTitle));
+    if (!fSkipTitle)
+      if (Find(kTitle)) node->AddAttrib(new Bober::XMLAttrib("Title", fTitle));
     if (Find(kRangeMin)) node->AddAttrib(new Bober::XMLAttrib("RangeMin", Form("%4.4f", GetF(kRangeMin))));
     if (Find(kRangeMax)) node->AddAttrib(new Bober::XMLAttrib("RangeMax", Form("%4.4f", GetF(kRangeMax))));
     if (Find(kTicksOpt)) node->AddAttrib(new Bober::XMLAttrib("TicksOpt", GetTicks()));
@@ -234,7 +236,7 @@ namespace Bober {
     }
     if (auto atr = node->GetAttrib("Title")) {
       TString x = atr->GetValue();
-      SetTitle(x);
+      if (!fSkipTitle) SetTitle(x);
     }
     if (auto atr = node->GetAttrib("TicksOpt")) {
       TString x = atr->GetValue();
@@ -267,7 +269,7 @@ namespace Bober {
     }
   }
 
-  AxisStyle::AxisStyle() {}
+  AxisStyle::AxisStyle(Bool_t skipTitle) : fSkipTitle(skipTitle) {}
 
   AxisStyle::AxisStyle(Double_t titleSize, Double_t labelSize, Double_t titleOffset, Double_t labelOffset) {
     SetTitleSize(titleSize);
@@ -284,7 +286,8 @@ namespace Bober {
     Apply(dummy);
     if (dummy.GetTitleOffset() != x.GetTitleOffset()) SetTitleOffset(x.GetTitleOffset());
     if (dummy.GetLabelOffset() != x.GetLabelOffset()) SetLabelOffset(x.GetLabelOffset());
-    if (dummy.GetTitleSize() != x.GetTitleSize()) SetTitleSize(x.GetTitleSize());
+    if (!fSkipTitle)
+      if (dummy.GetTitleSize() != x.GetTitleSize()) SetTitleSize(x.GetTitleSize());
     if (dummy.GetLabelSize() != x.GetLabelSize()) SetLabelSize(x.GetLabelSize());
     if (dummy.GetTickLength() != x.GetTickLength()) SetTickLength(x.GetTickLength());
     if (dummy.GetNdivisions() != x.GetNdivisions()) SetNdivisions(x.GetNdivisions(), false);
