@@ -10,6 +10,7 @@
 #include <Rtypes.h>
 #include <TString.h>
 #include <TVirtualPad.h>
+#include <iostream>
 
 #include "XMLNode.h"
 
@@ -95,8 +96,8 @@ namespace Bober {
     if (Find(kLogz)) obj->SetLogz(GetI(kLogz));
     if (Find(kGridx)) obj->SetGridx(GetI(kGridx));
     if (Find(kGridy)) obj->SetGridy(GetI(kGridy));
-    if (Find(kTickX)) obj->SetTickx(GetI(kGridx));
-    if (Find(kTickY)) obj->SetTicky(GetI(kGridy));
+    if (Find(kTickX)) { obj->SetTickx(GetI(kTickX)); }
+    if (Find(kTickY)) { obj->SetTicky(GetI(kTickY)); }
   }
 
   void PadStyle::ExportToXML(XMLNode* node) const {

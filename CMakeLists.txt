@@ -67,6 +67,7 @@ install(TARGETS Bober
     ARCHIVE DESTINATION lib
 )
 
-install(FILES ${CMAKE_BINARY_DIR}/libBober_rdict.pcm
+install(FILES ${CMAKE_BINARY_DIR}/libBober_rdict.pcm ${CMAKE_BINARY_DIR}/libBober.rootmap
     DESTINATION lib
 )
+

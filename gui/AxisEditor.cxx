@@ -25,6 +25,8 @@
 #include <TVirtualPad.h>
 #include <cstring>
 
+#include <iostream>
+
 namespace Bober {
   enum EAxisWid {
     kCOL_AXIS,
@@ -515,7 +517,7 @@ namespace Bober {
                                    0.05,
                                    5,
                                    kAXIS_TITSIZE,
-                                   TGNumberFormat::kNESRealTwo,
+                                   TGNumberFormat::kNESRealThree,
                                    TGNumberFormat::kNEANonNegative,
                                    TGNumberFormat::kNELLimitMinMax,
                                    0.,
@@ -545,7 +547,7 @@ namespace Bober {
                                      1.00,
                                      6,
                                      kAXIS_TITOFFSET,
-                                     TGNumberFormat::kNESRealTwo,
+                                     TGNumberFormat::kNESRealThree,
                                      TGNumberFormat::kNEAAnyNumber,
                                      TGNumberFormat::kNELLimitMinMax,
                                      0.1,
@@ -571,7 +573,7 @@ namespace Bober {
                                    0.05,
                                    6,
                                    kAXIS_LBLSIZE,
-                                   TGNumberFormat::kNESRealTwo,
+                                   TGNumberFormat::kNESRealThree,
                                    TGNumberFormat::kNEANonNegative,
                                    TGNumberFormat::kNELLimitMinMax,
                                    0.,

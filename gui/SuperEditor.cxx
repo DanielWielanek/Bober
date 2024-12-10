@@ -64,8 +64,9 @@ namespace Bober {
   void SuperEditor::DoSave() {
     HistoStyle style;
     style.Import(*fObject);
-    if (fXaxis->ForcedNdiv()) { style.GetAxisStyle('x').SetNdivisions(style.GetAxisStyle('x').GetNDivisions(), true); }
-    if (fYaxis->ForcedNdiv()) { style.GetAxisStyle('y').SetNdivisions(style.GetAxisStyle('y').GetNDivisions(), true); }
+    style.GetAxisStyle('x').SetNdivisions(style.GetAxisStyle('x').GetNDivisions(), fXaxis->ForcedNdiv());
+    style.GetAxisStyle('y').SetNdivisions(style.GetAxisStyle('y').GetNDivisions(), fYaxis->ForcedNdiv());
+
     TString path = fSaveAs->GetText();
     XMLFile file(path, "recreate");
     file.CreateRootNode("data");
