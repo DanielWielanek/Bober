@@ -11,6 +11,8 @@
 #include <TAxis.h>
 #include <TString.h>
 
+#include <iostream>
+
 #include "XMLNode.h"
 
 namespace Bober {
@@ -46,6 +48,7 @@ namespace Bober {
   void AxisStyle::SetTickLength(Float_t val) { SetF(kTickLength, val); }
 
   void AxisStyle::SetNdivisions(Int_t val, Bool_t optim) {
+    val = TMath::Abs(val);
     if (!optim) val = -val;
     SetI(kNdivisions, val);
   }
@@ -130,7 +133,7 @@ namespace Bober {
     if (Find(kMoreLog)) obj.SetMoreLogLabels(GetI(kMoreLog));
     if (Find(kFontStyleLabel)) obj.SetLabelFont(GetI(kFontStyleLabel));
     if (Find(kRotatedTitle)) { obj.RotateTitle(GetI(kRotatedTitle)); }
-    if (Find(kDecimal)) obj.SetDecimals(GetI(kLabelColor));
+    if (Find(kDecimal)) obj.SetDecimals(GetI(kDecimal));
     if (Find(kNoExp)) obj.SetNoExponent(GetI(kNoExp));
   };
 
@@ -156,7 +159,7 @@ namespace Bober {
     if (Find(kRangeMax)) node->AddAttrib(new Bober::XMLAttrib("RangeMax", Form("%4.4f", GetF(kRangeMax))));
     if (Find(kTicksOpt)) node->AddAttrib(new Bober::XMLAttrib("TicksOpt", GetTicks()));
     if (Find(kMoreLog)) node->AddAttrib(new Bober::XMLAttrib("MoreLog", Form("%i", (int) GetI(kMoreLog))));
-    if (Find(kRotatedTitle)) node->AddAttrib(new Bober::XMLAttrib("RoateTitle", Form("%i", (int) GetI(kRotatedTitle))));
+    if (Find(kRotatedTitle)) node->AddAttrib(new Bober::XMLAttrib("RotatedTitle", Form("%i", (int) GetI(kRotatedTitle))));
     if (Find(kFontStyleLabel)) node->AddAttrib(new Bober::XMLAttrib("LabelFont", Form("%i", (int) GetI(kFontStyleLabel))));
     if (Find(kDecimal)) node->AddAttrib(new Bober::XMLAttrib("Decimal", Form("%i", (int) GetI(kDecimal))));
     if (Find(kNoExp)) node->AddAttrib(new Bober::XMLAttrib("NoExp", Form("%i", (int) GetI(kNoExp))));
@@ -191,7 +194,7 @@ namespace Bober {
     }
     if (auto atr = node->GetAttrib("Ndivisions")) {
       int x = atr->GetValue().Atoi();
-      if (x < 0)
+      if (x >= 0)
         SetNdivisions(x, true);
       else
         SetNdivisions(x, false);
@@ -243,7 +246,7 @@ namespace Bober {
       SetMoreLogLabels(x);
     }
 
-    if (auto atr = node->GetAttrib("RoateTitle")) {
+    if (auto atr = node->GetAttrib("RotatedTitle")) {
       int x = atr->GetValue().Atoi();
       SetRotateTitle(x);
     }
@@ -302,10 +305,10 @@ namespace Bober {
   }
 
   void AxisStyle::SetTicks(TString opt) {
-    if (opt == "+") SetI(1, kTicksOpt);
-    if (opt == "-") SetI(2, kTicksOpt);
-    if (opt == "") SetI(0, kTicksOpt);
-    if (opt == "+-") SetI(3, kTicksOpt);
+    if (opt == "+") SetI(kTicksOpt, 1);
+    if (opt == "-") SetI(kTicksOpt, 2);
+    if (opt == "") SetI(kTicksOpt, 0);
+    if (opt == "+-") SetI(kTicksOpt, 3);
   }
 
   TString AxisStyle::GetTicks() const {
