@@ -52,9 +52,18 @@ namespace Bober {
     TGTextButton* draw = new TGTextButton(superFrame, "&SaveAs");
     draw->Connect("Clicked()", "Bober::SuperEditor", this, "DoSave()");
     superFrame->AddFrame(draw, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
-    fObject = nullptr;
-    fXaxis  = nullptr;
-    fYaxis  = nullptr;
+    fObject         = nullptr;
+    fXaxis          = nullptr;
+    fYaxis          = nullptr;
+    TGLabel* label5 = new TGLabel(superFrame, "Redraw option [for tests only]:");
+    superFrame->AddFrame(label5, new TGLayoutHints(kLHintsCenterY | kLHintsTop));
+    fRedraw = new TGTextEntry(superFrame, new TGTextBuffer(50));
+    fRedraw->Resize(135, fRedraw->GetDefaultHeight());
+    fRedraw->SetToolTipText("Set draw option (not saved)");
+    superFrame->AddFrame(fRedraw, new TGLayoutHints(kLHintsLeft, kLHintsTop));
+    TGTextButton* redraw = new TGTextButton(superFrame, "&Redraw");
+    redraw->Connect("Clicked()", "Bober::SuperEditor", this, "Redraw()");
+    superFrame->AddFrame(redraw, new TGLayoutHints(kLHintsCenterX, 5, 5, 3, 4));
   }
   void SuperEditor::SetAxesEditors(AxisEditor* x, AxisEditor* y) {
     fXaxis = x;
@@ -92,6 +101,13 @@ namespace Bober {
     name.ReplaceAll(" ", "");
     name = name + ".xml";
     fSaveAs->SetText(name, kFALSE);
+  }
+
+  void SuperEditor::Redraw() {
+    if (fObject) {
+      fObject->Draw(fRedraw->GetText());
+      Update();
+    }
   }
 
   SuperEditor::~SuperEditor() {}

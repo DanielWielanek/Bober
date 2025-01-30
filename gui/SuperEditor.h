@@ -26,6 +26,7 @@ namespace Bober {
     LineEditor* fLineEdit;
     FillEditor* fFillEdit;
     TGTextEntry* fSaveAs;
+    TGTextEntry* fRedraw;
     TObject* fObject;
     AxisEditor* fXaxis;
     AxisEditor* fYaxis;
@@ -33,6 +34,7 @@ namespace Bober {
   public:
     SuperEditor(TGCompositeFrame* frame, TVirtualPad* pad);
     void DoSave();
+    void Redraw();
     void SetAxesEditors(AxisEditor* x, AxisEditor* b);
     virtual void SetModel(TObject* obj);
     virtual ~SuperEditor();
