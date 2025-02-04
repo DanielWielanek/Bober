@@ -547,7 +547,7 @@ namespace Bober {
                                      1.00,
                                      6,
                                      kAXIS_TITOFFSET,
-                                     TGNumberFormat::kNESRealThree,
+                                     TGNumberFormat::kNESRealTwo,
                                      TGNumberFormat::kNEAAnyNumber,
                                      TGNumberFormat::kNELLimitMinMax,
                                      0.1,
