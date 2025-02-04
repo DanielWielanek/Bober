@@ -286,8 +286,12 @@ namespace Bober {
     Apply(dummy);
     if (dummy.GetTitleOffset() != x.GetTitleOffset()) SetTitleOffset(x.GetTitleOffset());
     if (dummy.GetLabelOffset() != x.GetLabelOffset()) SetLabelOffset(x.GetLabelOffset());
-    if (!fSkipTitle)
-      if (dummy.GetTitleSize() != x.GetTitleSize()) SetTitleSize(x.GetTitleSize());
+    if (!fSkipTitle) {
+      TString dummyTitle  = dummy.GetTitle();
+      TString sourceTitle = x.GetTitle();
+      if (dummyTitle != sourceTitle) SetTitle(sourceTitle);
+    }
+    if (dummy.GetTitleSize() != x.GetTitleSize()) SetTitleSize(x.GetTitleSize());
     if (dummy.GetLabelSize() != x.GetLabelSize()) SetLabelSize(x.GetLabelSize());
     if (dummy.GetTickLength() != x.GetTickLength()) SetTickLength(x.GetTickLength());
     if (dummy.GetNdivisions() != x.GetNdivisions()) SetNdivisions(x.GetNdivisions(), false);
