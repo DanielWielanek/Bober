@@ -8,7 +8,7 @@
 
 ```
   
-# Because Of Basic Editor in Root sucks
+# Because Of Basic Editors are Retarded
 GUI editor for root histogram.
 As you know it's annoying to configure the histograms. Here is a GUI editor that will help you.
 ## How to install
