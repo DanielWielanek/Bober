@@ -8,7 +8,7 @@
 
 ```
   
-# Better Organized Histogram Editor for ROOT
+# Better Organized Basic Editor for ROOT
 GUI editor for root histogram.
 As you know it's annoying to configure the histograms. Here is a GUI editor that will help you.
 ## How to install
