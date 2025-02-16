@@ -66,3 +66,7 @@ you should modify path to opened xml file.
 
 ### Bugs
 This is a early developed project, if you found bug please report as an issue to github.
+
+### TODO
+* Adding the "empty pad editor" to cover some stuff.
+
